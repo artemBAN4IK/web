@@ -1,6 +1,5 @@
 body {
   max-width: 799px;
-  width: 100%;
   margin: 0 auto;
 }
 
@@ -35,6 +34,8 @@ body {
 .profile h1 {
   font-size: 24px;
   margin-bottom: 2px;
+  line-height: 6px;
+  height: 6px;
 }
 
 .profile p {
@@ -43,16 +44,20 @@ body {
 
 .contacts {
   text-align: right;
+  line-height: 6px;
+  height: 90px;
 }
 
 .contacts h2 {
   font-size: 24px;
   margin-bottom: 15px;
+  height: 10px;
 }
 
 .contacts p {
   font-size: 14px;
   margin-top: 15px;
+  height: 7px;
 }
 
 .about {
@@ -75,7 +80,7 @@ body {
  
 .hobbies {
   flex: 1;
-  border-right: 1px solid #5A9645;
+  border-right: 1px solid #5A9645;  
 }
  
 .social {
@@ -212,6 +217,8 @@ button:hover {
   color: #5A9645;
   padding: 15px 0;
   border-bottom: 1px solid green;
+  line-height: 6px;
+  height: 6px;
 }
 
 .tech a {
@@ -226,4 +233,8 @@ button:hover {
 
 .social a:hover {
   color: #5A9645;
+}
+
+html {
+  font-family: Arial, Helvetica, sans-serif;
 }
