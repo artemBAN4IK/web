@@ -15,3 +15,5 @@ if(number%2==0) {
 }
 console.log(sign,schet);
 }
+
+checkNumber(20)
