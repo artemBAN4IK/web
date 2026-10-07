@@ -25,5 +25,10 @@ server.listen(port, () => {
 
 
 & "C:\Users\artem\OneDrive\Рабочий стол\node\node-v24.21.0-win-x64\node.exe" index.js
+& "C:\Users\kalinichenko2_aa\Desktop\lab node\node-v24.21.0-win-x64\node.exe" node.js
+
 cd "C:\Users\artem\OneDrive\Рабочий стол\node"
+cd "C:\Users\kalinichenko2_aa\Desktop\lab node"
+
 .\node-v24.21.0-win-x64\node.exe index.js
+.\node-v24.21.0-win-x64\node.exe node.js
