@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.app {
+    display: grid;
+    grid-template-columns: 50px 300px auto;
+    height: 100vh;
+    font-family: "Roboto", sans-serif;
+    transition: grid-template-columns 0.3s ease-in-out;
+}
+
+.sidebar {
+    background: purple;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.sidebar__icon {
+    width: 30px;
+    height: 30px;
+    background: black;
+}
+
+.navbar {
+    background: gainsboro;
+    display: grid;
+    grid-template-rows: 70px calc(100vh - 70px);
+    overflow: hidden;
+}
+
+.navbar__controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
