@@ -1,8 +1,89 @@
+import { Editor } from '@tiptap/core'
+import StarterKit from '@tiptap/starter-kit'
+
+const editor = new Editor({
+    element: document.querySelector('#editor-content'),
+    extensions: [StarterKit],
+    content: '<p>Hello World!</p>',
+})
+
 const iconHide = document.getElementById('hide')
 const app = document.getElementById('app')
+const createBtn = document.getElementById('create-btn')
+const modal = document.getElementById('shadow')
+const btnSave = document.getElementById('btn-save')
+const btnClose = document.getElementById('btn-close')
 
 iconHide.addEventListener('click', () => {
     app.classList.toggle('app_navbar-hidden')
+})
+
+const toolButtons = document.querySelectorAll('[data-tiptap-button]')
+
+const commands = {
+    bold: () => editor.chain().focus().toggleBold().run(),
+    italic: () => editor.chain().focus().toggleItalic().run(),
+    strike: () => editor.chain().focus().toggleStrike().run(),
+    code: () => editor.chain().focus().toggleCode().run(),
+    h1: () => editor.chain().focus().toggleHeading({ level: 1 }).run(),
+    h2: () => editor.chain().focus().toggleHeading({ level: 2 }).run(),
+    bulletList: () => editor.chain().focus().toggleBulletList().run(),
+    orderedList: () => editor.chain().focus().toggleOrderedList().run(),
+    blockquote: () => editor.chain().focus().toggleBlockquote().run(),
+    codeBlock: () => editor.chain().focus().toggleCodeBlock().run()
+}
+
+const activeNames = {
+    h1: ['heading', { level: 1 }],
+    h2: ['heading', { level: 2 }]
+}
+
+for (let button of toolButtons) {
+    button.addEventListener('click', () => {
+        commands[button.dataset.tiptapButton]()
+    })
+}
+
+function updateToolButtons() {
+    for (let button of toolButtons) {
+        const name = button.dataset.tiptapButton
+        const [type, attrs] = activeNames[name] || [name]
+        button.classList.toggle('editor__tools_active', editor.isActive(type, attrs))
+    }
+}
+
+editor.on('transaction', updateToolButtons)
+
+createBtn.addEventListener('click', () => {
+    modal.classList.add('shadow_active')
+})
+
+btnClose.addEventListener('click', () => {
+    modal.classList.remove('shadow_active')
+})
+
+btnSave.addEventListener('click', () => {
+    const titleInput = document.getElementById('note-title')
+    const descriptionInput = document.getElementById('note-description')
+
+    if (titleInput.value.trim() === '') {
+        return
+    }
+
+    const note = {
+        title: titleInput.value,
+        description: descriptionInput.value,
+        date: new Date().toISOString().slice(0, 10)
+    }
+
+    notes.push(note)
+    currentNote = note
+
+    titleInput.value = ''
+    descriptionInput.value = ''
+    modal.classList.remove('shadow_active')
+
+    renderNavbar()
 })
 
 const days = [
@@ -17,18 +98,18 @@ const days = [
 
 const notes = [
     {
-        title: 'The Flag Is Raised',
-        description: 'She shines her light on me Maria, Maria',
+        title: 'Поход в магазин',
+        description: 'Купить что-то, и еще что-то и еще чтото и что то еще',
         date: '2026-10-13'
     },
     {
-        title: 'Expression On Your Face',
-        description: 'Im touched by nobody I show affection to the floor',
+        title: 'Выбрать билеты на самолет',
+        description: 'Будем использовать авиасейлс',
         date: '2026-11-13'
     },
     {
-        title: 'Durins Bane',
-        description: 'I had ate so many nights, Im becoming skinny fat',
+        title: 'Домофон подруги',
+        description: '103',
         date: '2026-12-13'
     }
 ]
@@ -81,9 +162,7 @@ function getNoteHTML(note) {
 const navbarElement = document.getElementById('navbar')
 
 function renderEditor() {
-    document.getElementById('editor-date').innerHTML = currentNote.date
-    document.getElementById('editor-title').innerHTML = currentNote.title
-    document.getElementById('editor-text').innerHTML = currentNote.description
+    editor.commands.setContent(`<h1>${currentNote.title}</h1><p>${currentNote.description}</p>`)
 }
 
 function renderNavbar() {
