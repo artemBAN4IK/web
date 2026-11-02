@@ -40,7 +40,7 @@
 
 .navbar__controls {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr auto;
     align-items: center;
     gap: 10px;
     padding: 0 12px;
@@ -117,41 +117,161 @@
     overflow-wrap: anywhere;
 }
 
+.navbar__create {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 6px;
+    background: purple;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
 .editor {
     display: grid;
-    grid-template-rows: 44px 1fr;
+    grid-template-rows: auto 1fr;
     background: white;
     overflow: hidden;
 }
 
-.editor__toolbar {
+.editor__tools {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 18px;
-    padding: 0 20px;
+    gap: 8px;
+    padding: 10px 20px;
     border-bottom: 1px solid #ddd;
-    font-size: 14px;
 }
 
-.editor__page {
-    padding: 40px 60px;
-    max-width: 760px;
+.editor__tools button {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: white;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.editor__tools button:hover {
+    background: #f0f0f0;
+}
+
+.editor__tools .editor__tools_active {
+    background: purple;
+    border-color: purple;
+    color: white;
+}
+
+.editor__content {
+    padding: 30px 60px;
     overflow-y: auto;
 }
 
-.editor__date {
-    font-size: 12px;
-    color: #888;
-    margin-bottom: 12px;
+.editor__content .tiptap {
+    outline: none;
+    max-width: 760px;
+    line-height: 1.6;
 }
 
-.editor__title {
+.editor__content .tiptap h1 {
     font-size: 32px;
     color: #3d2b4f;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
-.editor__text {
-    font-size: 16px;
-    line-height: 1.6;
+.editor__content .tiptap h2 {
+    font-size: 24px;
+    margin: 16px 0 10px;
+}
+
+.editor__content .tiptap ul,
+.editor__content .tiptap ol {
+    padding-left: 24px;
+    margin: 8px 0;
+}
+
+.editor__content .tiptap blockquote {
+    margin: 10px 0;
+    padding-left: 14px;
+    border-left: 3px solid purple;
+    color: #555;
+}
+
+.editor__content .tiptap code {
+    padding: 2px 5px;
+    border-radius: 4px;
+    background: #eee;
+    font-size: 14px;
+}
+
+.editor__content .tiptap pre {
+    margin: 10px 0;
+    padding: 12px;
+    border-radius: 8px;
+    background: #2b2b2b;
+    color: #eee;
+    overflow-x: auto;
+}
+
+.editor__content .tiptap pre code {
+    padding: 0;
+    background: none;
+    color: inherit;
+}
+
+.shadow {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.shadow_active {
+    display: flex;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 400px;
+    padding: 24px;
+    border-radius: 10px;
+    background: white;
+}
+
+.modal__input {
+    padding: 8px 10px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.modal__textarea {
+    height: 120px;
+    resize: none;
+}
+
+.modal__buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.modal__buttons button {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    background: purple;
+    color: white;
+    cursor: pointer;
+}
+
+#btn-close {
+    background: #ccc;
+    color: black;
 }
