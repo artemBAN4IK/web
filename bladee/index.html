@@ -18,6 +18,7 @@
             <div class="navbar__controls">
                 <div>Сортировка</div>
                 <input class="navbar__controls-input" type="text" placeholder="Поиск заметок">
+                <button class="navbar__create" id="create-btn">+</button>
             </div>
             <div class="navbar__scroll">
                 <div class="navbar__month" id="navbar">
@@ -25,20 +26,35 @@
             </div>
         </section>
         <section class="editor">
-            <div class="editor__toolbar">
-                <span>AA</span>
-                <span>12 pt</span>
-                <b>B</b>
-                <i>I</i>
-                <u>U</u>
+            <div class="editor__tools">
+                <button data-tiptap-button="bold">Bold</button>
+                <button data-tiptap-button="italic">Italic</button>
+                <button data-tiptap-button="strike">Strike</button>
+                <button data-tiptap-button="code">Code</button>
+                <button data-tiptap-button="h1">H1</button>
+                <button data-tiptap-button="h2">H2</button>
+                <button data-tiptap-button="bulletList">Bullet List</button>
+                <button data-tiptap-button="orderedList">Ordered List</button>
+                <button data-tiptap-button="blockquote">Blockquote</button>
+                <button data-tiptap-button="codeBlock">Code Block</button>
             </div>
-            <article class="editor__page">
-                <div class="editor__date" id="editor-date"></div>
-                <h1 class="editor__title" id="editor-title"></h1>
-                <p class="editor__text" id="editor-text"></p>
-            </article>
+            <div class="editor__content" id="editor-content"></div>
         </section>
     </div>
-    <script src="./script.js"></script>
+
+    <div class="shadow" id="shadow">
+        <div class="modal">
+            <h2 class="modal__title">Новая заметка</h2>
+            <input class="modal__input" id="note-title" type="text" placeholder="Заголовок">
+            <textarea class="modal__input modal__textarea" id="note-description" placeholder="Текст заметки"></textarea>
+            <div class="modal__buttons">
+                <button id="btn-save">Сохранить</button>
+                <button id="btn-close">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./script.js"></script>
 </body>
+
 </html>
